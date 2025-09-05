@@ -24,8 +24,8 @@ public class UsuarioModelMap : IEntityTypeConfiguration<UsuarioModel>
             .IsRequired();
 
         // Relacionamento 1:N com Pedido
-        builder.HasMany(u => u.Pedidos)
-               .WithOne(p => p.Usuario)
-               .HasForeignKey(p => p.UsuarioId);
+        //builder.HasMany(u => u.Pedidos)
+        //.WithOne(p => p.Usuario)
+        //.HasForeignKey(p => p.UsuarioId);
     }
 }

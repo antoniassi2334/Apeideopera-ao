@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Apeideoperaçao.Migrations
 {
     [DbContext(typeof(VendasContext))]
-    partial class VendasContextModelSnapshot : ModelSnapshot
+    [Migration("20250905151251_AddLoginAndAlterUsuario")]
+    partial class AddLoginAndAlterUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,7 +168,7 @@ namespace Apeideoperaçao.Migrations
             modelBuilder.Entity("PedidoModel", b =>
                 {
                     b.HasOne("UsuarioModel", "Usuario")
-                        .WithMany()
+                        .WithMany("Pedidos")
                         .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -200,6 +203,11 @@ namespace Apeideoperaçao.Migrations
             modelBuilder.Entity("ProdutoModel", b =>
                 {
                     b.Navigation("PedidosProdutos");
+                });
+
+            modelBuilder.Entity("UsuarioModel", b =>
+                {
+                    b.Navigation("Pedidos");
                 });
 #pragma warning restore 612, 618
         }
